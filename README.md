@@ -1,5 +1,5 @@
 # GraphSO
-A Structure-aware Storage Optimization for Out-of-Core Concurrent Graph Processing, and a lightweight runtime system which runs in any existing graph processing sytems
+It is an efficient structure-aware graph storage system that can be integrated with existing out-of-core graph processing systems to efficiently execute concurrent iterative graph processing jobs. Specifically, GraphSO can judiciously load the required graph data to efficiently construct the logical partitions for the execution of the concurrent jobs, thereby reducing much unnecessary I/O overhead and maximizing the utilization of the loaded graph data. Moreover, GraphSO designs a buffering strategy to efficiently use the memory resources so as to minimize the I/O traffic.
 
 # Integrated with existing graph processing systems
 Init() call is implemented before the processing. GetActiveChunks() and Repartition() are inserted between successive iterations in the program to get the active chunks and construct the logical partitions before each iteration, respectively. Note that, GetActiveChunks() needs to be placed before Repartition(), thereby identifying the active chunks to guild the graph repartitioning. Schedule() replaces the original graph load operation for efficiently loading the logical partitions to be shared by concurrent jobs.
